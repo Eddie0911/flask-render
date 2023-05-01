@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# eslint cache
+.eslintcache
+
+# VS code
+.vscode
+
+# DS_Store
+.DS_Store
