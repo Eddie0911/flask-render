@@ -2,6 +2,8 @@ from flask import Flask
 import os
 import psycopg2
 
+#TODO
+
 app = Flask(__name__)
 
 @app.route('/')
