@@ -1,0 +1,10 @@
+<form method="POST" action="/api/edit/{{ tour_item['id'] }}">
+    <label for="item_name">tour item name</label>
+    <input id="item_name" name="item_name" value="{{ tour_item['name'] }}" required/>
+    <label for="item_price">tour item price</label>
+    <input id="item_price" name="item_price" value="{{ tour_item['price'] }}" required/>
+    <label for="item_pic">tour item pic</label>
+    <input id="item_pic" name="item_pic" value="{{ tour_item['image_url'] }}"/>
+  
+    <input type="submit">
+</form>

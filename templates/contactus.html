@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form method="POST" action="/contactus">
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email">
+
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name">
+
+    <label for="phone_number">phone number</label>
+    <input id="phone_number" type="text" name="phone_number">
+
+    <label for="direction">direction</label>
+    <input id="direction" type="text" name="direction">
+
+    <label for="days">How many days you would like to travel</label>
+    <input id="days" type="text" name="days">
+
+    <input type="submit">
+</form>
+{% endblock %}

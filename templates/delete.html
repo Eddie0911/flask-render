@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<p>Are you sure you want to delete {{ tour_item["name"] }}?</p>
+<form>
+    <input hidden name="id" value="{{ tour_item['id'] }}">
+    <input type="submit" value="Yes" formmethod="POST" formaction="/api/delete">
+    <input type="submit" value="No" formaction="/">
+</form>
+
+{% endblock %}
