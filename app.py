@@ -2,6 +2,7 @@ from flask import Flask, render_template , request ,redirect,session
 from models import tour, user
 import os
 import bcrypt
+import psycopg2
 
 
 
@@ -19,15 +20,17 @@ app.secret_key = os.getenv('SECRET_KEY','default_secret_key')
 #     connection.close()
 #     return f"{results[0]}"
 
-#TODO homepage
+# Home page
 @app.route('/')
 def homepage():
     return render_template('home.html')
 
+# grouptour page
 @app.route('/grouptour')
 def grouptour():
     return render_template('grouptour.html',tour_items=tour.get_all_tour())
 
+# add page
 @app.route('/add')
 def add_tour():
     if session.get("user_id",""):
@@ -35,13 +38,15 @@ def add_tour():
     else:
         return redirect("/login")
 
+# get the data from form
 @app.route('/api/add', methods=["POST"])
 def add_tour_docu():
     form = request.form
-
+    # use tour from model to insert data into database 
     tour.insert_tour(form.get("item_name"),form.get("item_price"))
     return redirect("/")
 
+#edit page and using session to check the user 
 @app.route('/edit/<id>')
 def edit_tour_form(id):
     if session.get("user_id", ""):

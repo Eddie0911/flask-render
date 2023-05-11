@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{%block head%}
+<link rel="stylesheet" href="../static/home.css">
+{%endblock%}
+
 {% block body %}
 
 <p>Are you sure you want to delete {{ tour_item["name"] }}?</p>

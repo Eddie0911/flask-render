@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{%block head%}
+<link rel="stylesheet" href="../static/home.css">
+{%endblock%}
+
 {% block body %}
 <form method="POST" action="/signup">
     <label for="email">Email</label>
