@@ -15,7 +15,7 @@ def write_requires(email,name,phone_number,start,end,partysize,budget,today):
     return common.sql_write("INSERT INTO requires(email,name,phone_number,startdate,enddate,partysize,budget,today) VALUES(,%s,%s,%s,%s,%s,%s,%s,%s);",[email,name,phone_number,start,end,partysize,budget,today])
 
 def convert_to_dictionary(item):
-    return {"id": str(item[0]), "email": str(item[1]), "name": item[2], "phone_number": item[3], "direction": item[4], "days": item[5]}
+    return {"id": str(item[0]), "email": str(item[1]), "name": item[2], "phone_number": item[3], "startdate": item[4], "enddate": item[5],"partysize": item[6],"budget": item[7],"today": item[8]}
 
 def get_requires(id):
     item = common.sql_read("SELECT * FROM requires WHERE id=%s;", [id])[0]
