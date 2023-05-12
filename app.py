@@ -59,7 +59,7 @@ def edit_tour_docu(id):
     form = request.form
 
     tour.update_tour(id,form.get("item_name"),form.get("item_price"))
-    return redirect("/")
+    return redirect("/grouptour")
 
 @app.route('/delete/<id>')
 def delete_tour_form(id):
@@ -68,11 +68,11 @@ def delete_tour_form(id):
   else:
     return redirect("/login")
 
-@app.route('/api/delete/<id>')
+@app.route('/api/delete',methods=["POST"])
 def delete_tour_docu():
     tour.delete_tour(request.form.get("id"))
 
-    return redirect("/")
+    return redirect('/grouptour')
 
 @app.route('/signup')
 def signup_page():
@@ -108,7 +108,7 @@ def login_action():
     
 @app.route('/contactus')
 def contactus():
-    return render_template('contactus.html')
+    return render_template("contactus.html")
 
 @app.route('/contactus', methods=['POST'])
 def clientInfo():
@@ -119,7 +119,13 @@ def clientInfo():
     days = request.form.get('days')
 
     user.write_requires(email,name,phone_number,direction,days)
-    return "Thank you for your information"
+    return render_template("requires.html")
+
+@app.route('/requires')
+def requires_list():
+    return render_template("requires.html", requires_items=user.get_all_requires())
+
+
 @app.route("/logout")
 def logout():
   session["user_id"] = None

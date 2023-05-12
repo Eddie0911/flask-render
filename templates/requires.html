@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head %} 
+<link rel="stylesheet" href="../static/home.css">
+{% endblock %}
+
+{% block body %}
+
+<ul>
+  {% for item in requires_items %} 
+    <li>Email: {{ item["email"] }} <br>Name: {{ item["name"] }}<br>Phone number:{{ item["phone_number"] }}<br>Direction: {{ item["direction"] }}<br>Days: {{ item["days"] }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

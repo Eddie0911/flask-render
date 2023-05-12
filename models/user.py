@@ -13,3 +13,14 @@ def write_user(email,name,hashed_password):
 
 def write_requires(email,name,phone_number,direction,days):
     return common.sql_write("INSERT INTO requires(email,name,phone_number,direction,days) VALUES(%s,%s,%s,%s,%s);",[email,name,phone_number,direction,days])
+
+def convert_to_dictionary(item):
+    return {"id": str(item[0]), "email": str(item[1]), "name": item[2], "phone_number": item[3], "direction": item[4], "days": item[5]}
+
+def get_requires(id):
+    item = common.sql_read("SELECT * FROM requires WHERE id=%s;", [id])[0]
+    return convert_to_dictionary(item)
+
+def get_all_requires():
+    items = common.sql_read("SELECT * FROM requires;")
+    return [convert_to_dictionary(item) for item in items]
