@@ -12,6 +12,10 @@
     {% if item["image_url"] %}
       <img src="{{ item['image_url'] }}">
     {% endif %}
+    <div class="links">
+      <a href="/edit/{{ item['id'] }}">Edit</a>
+      <a href="/delete/{{ item['id'] }}">Delete</a>
+    </div>
   {% endfor %}
 </ul>
 
