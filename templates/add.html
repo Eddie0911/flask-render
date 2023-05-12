@@ -1,12 +1,24 @@
-<form method="POST" action="/api/add">
+<!-- <form method="POST" action="/api/add">
     <label for="item_name">Tour item name</label>
     <input id="item_name" name="item_name" required/>
     <label for="item_price">Tour item price</label>
-    <input id="item_price" name="item_price" required/>
-    <label for="item_pic">Tour item pic</label>
-    <input id="item_pic" name="item_pic"/>
-  
+    <input id="item_price" name="item_price" required/> 
     <input type="submit">
-</form><br>
-
+</form> -->
+<!-- <br> -->
+<form method="post" action="/upload" enctype="multipart/form-data">
+    <label for="item_name">Tour item name</label>
+    <input id="item_name" name="item_name" required/>
+    <label for="item_price">Tour item price</label>
+    <input id="item_price" name="item_price" required/> 
+    <dl>
+        <p>
+            <input type="file" name="file" class="form-control" autocomplete="off" required>
+        </p>
+    </dl>
+    <p>
+        <input type="submit" value="Submit" class="btn btn-info">
+    </p>
+</form>
+<br>
 <a href="/">Go to home page</a>

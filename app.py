@@ -1,8 +1,11 @@
-from flask import Flask, render_template , request ,redirect,session
+from flask import Flask, render_template , request ,redirect,session,flash,url_for
+import urllib.request
+from werkzeug.utils import secure_filename
 from models import tour, user
 import os
 import bcrypt
 import psycopg2
+import psycopg2.extras
 from datetime import date 
 
 
@@ -10,7 +13,14 @@ from datetime import date
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY','default_secret_key')
-
+conn = psycopg2.connect(dbname=os.getenv("DB_NAME"),user=os.getenv("USER"),password=os.getenv("PASSWORD"),host=os.getenv("HOST"),port=os.getenv("DB_PORT"))
+#conn = psycopg2.connect(dbname="travel")
+UPLOAD_FOLDER = 'static/uploads/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+def allowed_file(filename):
+    return '.' in filename and filename.split('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 # @app.route('/')
 # def index():
 #     # connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
@@ -45,13 +55,43 @@ def add_tour():
         return redirect("/login")
 
 # get the data from form
-@app.route('/api/add', methods=["POST"])
-def add_tour_docu():
-    form = request.form
-    # use tour from model to insert data into database 
-    tour.insert_tour(form.get("item_name"),form.get("item_price"))
-    return redirect("/")
+# @app.route('/api/add', methods=["POST"])
+# def add_tour_docu():
+#     form = request.form
+#     # use tour from model to insert data into database 
+#     tour.insert_tour(form.get("item_name"),form.get("item_price"))
+#     return redirect("/")
 
+@app.route('/upload', methods=['POST'])
+def upload_image():
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    name = request.form.get("item_name")
+    price = request.form.get("item_price")
+    print(name)
+    print(price)
+    # use tour from model to insert data into database 
+ 
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        flash('No image selected for uploading')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename.strip())
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        print(filename)
+ 
+        cursor.execute("INSERT INTO tour(name,price,filename) VALUES (%s,%s,%s)", [name,price,filename])
+        conn.commit()
+ 
+        flash('Image successfully uploaded and displayed below')
+        return render_template('grouptour.html', filename=filename)
+    else:
+        flash('Allowed image types are - png, jpg, jpeg, gif')
+        return redirect(request.url)   
+    
 #edit page and using session to check the user 
 @app.route('/edit/<id>')
 def edit_tour_form(id):

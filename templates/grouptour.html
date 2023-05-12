@@ -9,10 +9,7 @@
 <ul>
   {% for item in tour_items %} 
     <li>{{ item["name"] }} {{ item["price"] }}</li>
-
-    {% if item["image_url"] %}
-      <img src="{{ item['image_url'] }}">
-    {% endif %}
+    <img src="../static/uploads/{{ item['filename'] }}">
     <div class="links">
       <a href="/edit/{{ item['id'] }}">Edit</a>
       <a href="/delete/{{ item['id'] }}">Delete</a>
