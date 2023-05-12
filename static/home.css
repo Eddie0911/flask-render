@@ -1,7 +1,54 @@
-header{
-    margin: 20px;
+body {
+    margin: 0;
+}
+
+.homepic {
+    margin: 0;
+    width: 100%;
+    height: 600px;
+    position: relative;
+}
+
+.homepic .inside{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size:25px;
+    height: 100%;
+    position: relative;
+    left: 0;
+    transform: all 1s;
+}
+
+.homepic .inside img{
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.homepic button {
+    position:absolute;
+    top:0;
+    bottom: 0;
+    margin: auto 0;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+
+    font-size: 40px;
+    font-weight: bold;
+
+    line-height: 50px;
+    text-align: center;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+.homepic .left {
+    left: 20px;
+}
+
+.homepic .right {
+    right: 20px;
 }

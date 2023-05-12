@@ -1,7 +1,60 @@
 {%extends "base.html"%}
 
 {%block head%}
+<link rel="stylesheet" href="../static/base.css">
 <link rel="stylesheet" href="../static/home.css">
 {%endblock%}
 {%block body%}
+<div class="homepic">
+    <div class="inside">
+        <img src="../static/1003.jpg" alt="pic1">
+        <img src="../static/1005.jpg" alt="pic2">
+        <img src="../static/2002.jpg" alt="pic3">
+        <img src="../static/2004.jpg" alt="pic4">
+        <img src="../static/2006.jpg" alt="pic5">
+        <img src="../static/2007.jpg" alt="pic6">
+        <img src="../static/3004.jpg" alt="pic7">
+        <img src="../static/3005.jpg" alt="pic8">
+        <img src="../static/3007.jpg" alt="pic9">
+        <img src="../static/3010.jpg" alt="pic10">
+        <img src="../static/3011.jpg" alt="pic11">
+        <img src="../static/3014.png" alt="pic12">
+    </div>
+    
+    <button class="left" onclick="leftShift()">&lt;</button>
+    <button class="right" onclick="rightShift()">&gt;</button>
+    
+</div>
+<script>
+    let index = 0
+
+
+    function refresh(){
+        if (index < 0 ){
+            index=11
+        } else if (index >11){
+            index = 0
+        }
+
+        let carousel = document.querySelector('.homepic')
+
+        let width = getComputedStyle(carousel).width
+        width = Number(width.slice(0,-2))
+
+        carousel.querySelector('.inside').style.left=
+            index * width * -1 + "px"
+    }
+
+    function leftShift() {
+        index --
+        refresh()
+    }
+
+    function rightShift() {
+        index ++
+        refresh()
+    }
+
+    window.onresize = refresh;
+</script>
 {%endblock%}

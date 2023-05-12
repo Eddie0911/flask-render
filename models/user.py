@@ -11,8 +11,8 @@ def get_user(filter_clause, params):
 def write_user(email,name,hashed_password): 
     return common.sql_write("INSERT INTO users(email,name,password_hash) VALUES(%s,%s,%s);",[email,name,hashed_password])
 
-def write_requires(email,name,phone_number,direction,days):
-    return common.sql_write("INSERT INTO requires(email,name,phone_number,direction,days) VALUES(%s,%s,%s,%s,%s);",[email,name,phone_number,direction,days])
+def write_requires(email,name,phone_number,start,end,partysize,budget,today):
+    return common.sql_write("INSERT INTO requires(email,name,phone_number,startdate,enddate,partysize,budget,today) VALUES(,%s,%s,%s,%s,%s,%s,%s,%s);",[email,name,phone_number,start,end,partysize,budget,today])
 
 def convert_to_dictionary(item):
     return {"id": str(item[0]), "email": str(item[1]), "name": item[2], "phone_number": item[3], "direction": item[4], "days": item[5]}

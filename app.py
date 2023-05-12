@@ -3,6 +3,7 @@ from models import tour, user
 import os
 import bcrypt
 import psycopg2
+from datetime import date 
 
 
 
@@ -29,6 +30,11 @@ def homepage():
 @app.route('/grouptour')
 def grouptour():
     return render_template('grouptour.html',tour_items=tour.get_all_tour())
+
+# About us page
+@app.route('/about')
+def aboutus():
+    return render_template('about.html')
 
 # add page
 @app.route('/add')
@@ -115,15 +121,18 @@ def clientInfo():
     email = request.form.get('email')
     name = request.form.get('name')
     phone_number = request.form.get('phone_number')
-    direction = request.form.get('direction')
-    days = request.form.get('days')
+    start = request.form.get('start')
+    end = request.form.get('end')
+    partysize = request.form.get('partysize')
+    budget = request.form.get('budget')
+    today= date.today()
 
-    user.write_requires(email,name,phone_number,direction,days)
-    return render_template("requires.html")
+    user.write_requires(email,name,phone_number,start,end,partysize,budget,today)
+    return render_template("Enquiry.html")
 
 @app.route('/requires')
 def requires_list():
-    return render_template("requires.html", requires_items=user.get_all_requires())
+    return render_template("Enquiry.html", requires_items=user.get_all_requires())
 
 
 @app.route("/logout")
