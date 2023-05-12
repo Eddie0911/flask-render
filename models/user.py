@@ -11,11 +11,11 @@ def get_user(filter_clause, params):
 def write_user(email,name,hashed_password): 
     return common.sql_write("INSERT INTO users(email,name,password_hash) VALUES(%s,%s,%s);",[email,name,hashed_password])
 
-def write_requires(email,name,phone_number,start,end,partysize,budget,today):
-    return common.sql_write("INSERT INTO requires(email,name,phone_number,startdate,enddate,partysize,budget,today) VALUES(,%s,%s,%s,%s,%s,%s,%s,%s);",[email,name,phone_number,start,end,partysize,budget,today])
+def write_requires(email,name,phone_number,start,end,partysize,budget,days,today):
+    return common.sql_write("INSERT INTO requires(email,name,phone_number,startlocation,endlocation,partysize,budget,days,today) VALUES(,%s,%s,%s,%s,%s,%s,%s,%s,%s);",[email,name,phone_number,start,end,partysize,budget,days,today])
 
 def convert_to_dictionary(item):
-    return {"id": str(item[0]), "email": str(item[1]), "name": item[2], "phone_number": item[3], "startdate": item[4], "enddate": item[5],"partysize": item[6],"budget": item[7],"today": item[8]}
+    return {"id": str(item[0]), "email": str(item[1]), "name": item[2], "phone_number": item[3], "startlocation": item[4], "endlocation": item[5],"partysize": item[6],"budget": item[7],"days": item[8],"today": item[9]}
 
 def get_requires(id):
     item = common.sql_read("SELECT * FROM requires WHERE id=%s;", [id])[0]

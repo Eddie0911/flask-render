@@ -8,7 +8,16 @@
 
 <ul>
   {% for item in requires_items %} 
-    <li>Email: {{ item["email"] }} <br>Name: {{ item["name"] }}<br>Phone number:{{ item["phone_number"] }}<br>Direction: {{ item["direction"] }}<br>Days: {{ item["days"] }}</li>
+    <li>Email: {{ item["email"] }} <br>
+        Name: {{ item["name"] }}<br>
+        Phone number:{{ item["phone_number"] }}<br>
+        Start Location: {{ item["startlocation"] }}<br>
+        End Location: {{ item["endlocation"] }}<br>
+        Partysize: {{ item["partysize"] }}<br>
+        Budget: {{ item["budget"] }}<br>
+        Days: {{ item["days"] }}
+        Submit date: {{ item["today"] }}
+      </li>
   {% endfor %}
 </ul>
 

@@ -125,10 +125,11 @@ def clientInfo():
     end = request.form.get('end')
     partysize = request.form.get('partysize')
     budget = request.form.get('budget')
+    days = request.form.get('days')
     today= date.today()
 
-    user.write_requires(email,name,phone_number,start,end,partysize,budget,today)
-    return render_template("Enquiry.html")
+    user.write_requires(email,name,phone_number,start,end,partysize,budget,days,today)
+    return redirect('/requires')
 
 @app.route('/requires')
 def requires_list():

@@ -9,6 +9,7 @@
 <ul>
   {% for item in tour_items %} 
     <li>{{ item["name"] }} {{ item["price"] }}</li>
+
     {% if item["image_url"] %}
       <img src="{{ item['image_url'] }}">
     {% endif %}
