@@ -15,6 +15,7 @@
             <a href="/grouptour">Group tour</a>
             <a href="/Tour">Private tour</a>
             <a href="/Booking">Booking</a>
+            <a href="/contactus">Contact us</a>
         </nav>
         <nav>
             {% if session["user_name"] %}
@@ -30,32 +31,5 @@
 
     </header>
     {% block body %}{% endblock %}<br><br>
-    <form method="POST" action="/api/contactus">
-      <label for="email">Email</label>
-      <input id="email" type="email" name="email" required>
-      <br>
-      <label for="name">Name</label>
-      <input id="name" type="text" name="name" required>
-      <br>
-      <label for="phone_number">Phone number</label>
-      <input id="phone_number" type="text" name="phone_number" required>
-      <br>
-      <label for="start">Start date</label>
-      <input id="start" type="text" name="start" required>
-      <br>
-      <label for="end">End date</label>
-      <input id="end" type="text" name="end" required>
-      <br>
-      <label for="partysize">Party size</label>
-      <input id="partysize" type="text" name="partysize" required>
-      <br>
-      <label for="budget">Budget</label>
-      <input id="budget" type="text" name="budget" required>
-      <br>
-      <input type="submit">
-  </form>
-    <nav>
-      <button><a href="/contactus">Contact us</a></button>
-    </nav>
   </body>
 </html>
