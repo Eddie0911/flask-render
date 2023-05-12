@@ -116,7 +116,7 @@ def login_action():
 def contactus():
     return render_template("contactus.html")
 
-@app.route('/contactus', methods=['POST'])
+@app.route('/api/contactus', methods=['POST'])
 def clientInfo():
     email = request.form.get('email')
     name = request.form.get('name')

@@ -20,7 +20,7 @@
             {% if session["user_name"] %}
             Hello {{ session["user_name"] }}!
             <a href="/add">Add</a>
-            <a href="/requires">Requires</a>
+            <a href="/requires">Enquiry</a>
             <a href="/logout">Logout</a>
             {% else %}
             <a href="/login">Login</a>
@@ -30,7 +30,7 @@
 
     </header>
     {% block body %}{% endblock %}<br><br>
-    <form method="POST" action="/contactus">
+    <form method="POST" action="/api/contactus">
       <label for="email">Email</label>
       <input id="email" type="email" name="email" required>
       <br>
