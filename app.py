@@ -84,7 +84,8 @@ def upload_image():
     if file.filename == '':
         flash('No image selected for uploading')
         return redirect(request.url)
-#t checks if the file has an allowed extension using the allowed_file function. If the file has an allowed extension, it generates a secure filename using secure_filename(file.filename.strip()) to avoid any malicious filenames and saves the file to the upload folder using file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)).
+#t checks if the file has an allowed extension using the allowed_file function. If the file has an allowed extension, it generates a secure filename using secure_filename(file.filename.strip()) to avoid any malicious filenames and saves the file to the upload folder using file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)). 
+
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename.strip())
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -97,8 +98,7 @@ def upload_image():
         return render_template('grouptour.html', filename=filename)
     else:
         flash('Allowed image types are - png, jpg, jpeg, gif')
-        return redirect(request.url)   
-    
+        return redirect(request.url)     
 #edit page and using session to check the user 
 @app.route('/edit/<id>')
 def edit_tour_form(id):
@@ -112,7 +112,7 @@ def edit_tour_form(id):
 def edit_tour_docu(id):
     form = request.form
 
-    tour.update_tour(id,form.get("item_name"),form.get("item_price"))
+    tour.update_tour(id,form.get("item_name"),form.get("item_price"),form.get("item_pic"))
     return redirect("/grouptour")
 
 #delete tour item from tour table by ID
