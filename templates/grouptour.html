@@ -2,18 +2,21 @@
 
 {% block head %} 
 <link rel="stylesheet" href="../static/base.css">
+<link rel="stylesheet" href="../static/grouptour.css">
 {% endblock %}
 
 {% block body %}
 
 <ul>
   {% for item in tour_items %} 
+  <div>
     <li>{{ item["name"] }} {{ item["price"] }}</li>
     <img src="../static/uploads/{{ item['filename'] }}">
     <div class="links">
       <a href="/edit/{{ item['id'] }}">Edit</a>
       <a href="/delete/{{ item['id'] }}">Delete</a>
     </div>
+  </div>
   {% endfor %}
 </ul><br>
 <a href="/">Go to home page</a>

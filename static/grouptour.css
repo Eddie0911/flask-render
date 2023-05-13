@@ -1,0 +1,14 @@
+ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div{
+    display: grid;
+    margin: 10px;
+}
+
+img{
+    width: 200px;
+    height: 200px;
+}

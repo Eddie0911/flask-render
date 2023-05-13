@@ -13,8 +13,8 @@ from datetime import date
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY','default_secret_key')
-conn = psycopg2.connect(dbname=os.getenv("DB_NAME"),user=os.getenv("USER"),password=os.getenv("PASSWORD"),host=os.getenv("HOST"),port=os.getenv("DB_PORT"))
-#conn = psycopg2.connect(dbname="travel")
+#conn = psycopg2.connect(dbname=os.getenv("DB_NAME"),user=os.getenv("USER"),password=os.getenv("PASSWORD"),host=os.getenv("HOST"),port=os.getenv("DB_PORT"))
+conn = psycopg2.connect(dbname="travel")
 #Set 'static/uploads/' as my upload folder
 UPLOAD_FOLDER = 'static/uploads/'
 #sets the configuration property of the Flask application to use the UPLOAD_FOLDER as the destination directory for uploaded files.
