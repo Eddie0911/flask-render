@@ -6,7 +6,7 @@ def insert_tour(name,price):
     common.sql_write("INSERT INTO tour(name,price) VALUES(%s,%s);",[name,price])
 
 def convert_to_dictionary(item):
-    return {"id": str(item[0]), "name": item[1], "price": item[2]}
+    return {"id": str(item[0]), "name": item[1], "price": item[2],"filename": item[3]}
 
 def get_tour(id):
     item = common.sql_read("SELECT * FROM tour WHERE id=%s;", [id])[0]
@@ -16,8 +16,8 @@ def get_all_tour():
     items = common.sql_read("SELECT * FROM tour;")
     return [convert_to_dictionary(item) for item in items]
 
-def update_tour(id, name, price):
-    common.sql_write(f"UPDATE tour SET name=%s,  price=%s WHERE id={id}", [name, price])
+def update_tour(id, name, price,filename):
+    common.sql_write(f"UPDATE tour SET name=%s,  price=%s , filename=%s WHERE id={id}", [name, price,filename],)
 
 def delete_tour(id):
     common.sql_write(f"DELETE FROM tour WHERE id={id}", [id])
